@@ -14,7 +14,7 @@ public class ConstantsSwagger {
     
     public static final String CREATE_PROJECT_NOTES = "Cria um projeto.";
     
-    public static final String LIST_PROJECT = "Listar os projeto";
+    public static final String LIST_PROJECT = "Listar os projetos";
     
     public static final String LIST_PROJECT_NOTES = "Listar os projetos de acordo com os filtros.";
     

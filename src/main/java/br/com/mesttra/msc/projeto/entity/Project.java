@@ -55,7 +55,7 @@ public class Project {
 	@NotNull(message = Message.COST_REQUIRED)
 	private BigDecimal cost;
 	
-	@Column(name = "title", nullable = false)
+	@Column(name = "title", nullable = false, length = 15)
 	@NotNull(message = Message.TITLE_REQUIRED)
 	private String title;
 	

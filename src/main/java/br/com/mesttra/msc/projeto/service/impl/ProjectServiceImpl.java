@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.mesttra.msc.projeto.client.BudgetClient;
 import br.com.mesttra.msc.projeto.client.SecretariatClient;
+import br.com.mesttra.msc.projeto.dto.request.AllocationRequestDTO;
 import br.com.mesttra.msc.projeto.dto.response.BudgetResponseDTO;
 import br.com.mesttra.msc.projeto.dto.response.SecretariatResponseDTO;
 import br.com.mesttra.msc.projeto.entity.Project;
@@ -33,7 +34,9 @@ import lombok.RequiredArgsConstructor;
 public class ProjectServiceImpl implements ProjectService {
 	
 	private final ProjectRepository repository;
+	
 	private final SecretariatClient secretariatClient;
+	
 	private final BudgetClient budgetClient;
 
 	/*
@@ -59,11 +62,15 @@ public class ProjectServiceImpl implements ProjectService {
 			throw new ApplicationException(ServiceEnumValidation.SECRETARIAT_UNDER_INVESTIGATION);
 		}
 		
+		//Um projeto só pode ser aprovado caso haja orçamento disponível para executá-lo
 		List<BudgetResponseDTO> budgetResponseDTO = budgetClient.list(project.getFolder().getDestinationType());
 		
-		//FIXME
-		//- Um projeto só pode ser aprovado caso haja orçamento disponível para executá-lo, orçamento este que deve ser de uma pasta condizente com a do projeto;
-		//- O gasto com o projeto deverá ser contabilizado do DB do MS de Orçamento
+		if(budgetResponseDTO.isEmpty()) {
+			throw new ApplicationException(ServiceEnumValidation.BUDGET_NOT_FOUND);
+		}
+		
+		budgetClient.createBudgetAllocation(budgetResponseDTO.get(0).getId(), 
+				AllocationRequestDTO.builder().spentAmount(project.getCost()).build());
 		
 		return repository.save(project);
 	}

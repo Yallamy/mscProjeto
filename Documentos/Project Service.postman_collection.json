@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "4e5f1f9a-872d-42b9-bdf0-1fb938772ac1",
+		"name": "Project Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"secretariatId\": 1,\r\n  \"cost\": 50,\r\n  \"title\": \"Teste 1\",\r\n  \"description\": \"teste 1\",\r\n  \"folder\": \"HEALTH\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/microservices/api/v1/mesttra/project/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"microservices",
+						"api",
+						"v1",
+						"mesttra",
+						"project",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Project",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/microservices/api/v1/mesttra/project/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"microservices",
+						"api",
+						"v1",
+						"mesttra",
+						"project",
+						""
+					],
+					"query": [
+						{
+							"key": "folder",
+							"value": "HEALTH",
+							"disabled": true
+						},
+						{
+							"key": "secretariatId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

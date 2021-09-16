@@ -3,8 +3,6 @@ package br.com.mesttra.msc.projeto.dto.request;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import br.com.mesttra.msc.projeto.useful.ConstantsSwagger;
@@ -44,8 +42,6 @@ public class ProjectRequestDTO implements Serializable {
 	
 	@ApiModelProperty(value = ConstantsSwagger.PROJECT_REQUEST_DESCRIPTION_DTO, position = 4)
 	@NotNull(message = Message.DESCRIPTION_REQUIRED)
-	@Min(1)
-	@Max(30)
 	private String description;
 	
 	@ApiModelProperty(value = ConstantsSwagger.PROJECT_REQUEST_FOLDER_DTO, position = 5)

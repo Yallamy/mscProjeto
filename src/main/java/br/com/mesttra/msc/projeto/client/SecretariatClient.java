@@ -17,7 +17,7 @@ import br.com.mesttra.msc.projeto.dto.response.SecretariatResponseDTO;
 public interface SecretariatClient {
 
 	@RequestMapping(method = RequestMethod.GET, 
-			value = "/microservices/api/v1/mesttra/secretariat", 
+			value = "/microservices/api/v1/mesttra/secretariat/{id}", 
 			consumes = "application/json")
 	public SecretariatResponseDTO retrieve(@PathVariable("id") Long id);
 }
