@@ -2,6 +2,7 @@ server.error.whitelabel.enabled: true
 server.servlet.context-path: /microservices
 logging.level.org.springframework.web: TRACE
 server.error.include-stacktrace: NEVER
+feign.autoconfiguration.jackson.enabled: true
 
 server:
     port: 8080
@@ -20,6 +21,18 @@ apiConfig:
         
 logging:
     file: projectApi.log
+
+feign:
+  client:
+    config:
+      mcsOrcamento:
+        connectTimeout: 5000
+        readTimeout: 5000
+        errorDecoder: br.com.mesttra.msc.projeto.exceptions.CustomErrorDecoder
+      mcsSecretaria:
+        connectTimeout: 5000
+        readTimeout: 5000
+        errorDecoder: br.com.mesttra.msc.projeto.exceptions.CustomErrorDecoder
 
 info:
     app:

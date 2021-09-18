@@ -53,12 +53,17 @@ public class ProjectServiceImplTest {
 
 	@Mock
 	private Page<Project> page;
+	
+	@Mock
+	private Page<BudgetResponseDTO> pageBudget;
 
 	private Project request;
 
 	private Project response;
 	
 	private List<Project> listaResponse;
+	
+	private List<BudgetResponseDTO> listBudgetResponseDTO;
 
 	@SuppressWarnings("unchecked")
 	@BeforeEach
@@ -88,7 +93,7 @@ public class ProjectServiceImplTest {
 		
 		BudgetResponseDTO budgetResponseDTO = BudgetResponseDTO.builder().build();
 		SecretariatResponseDTO secretariatResponseDTO = SecretariatResponseDTO.builder().build();
-		List<BudgetResponseDTO> listBudgetResponseDTO = new LinkedList<BudgetResponseDTO>();
+		listBudgetResponseDTO = new LinkedList<BudgetResponseDTO>();
 		listBudgetResponseDTO.add(budgetResponseDTO);
 
 		Mockito.when(this.repository.save(
@@ -99,7 +104,7 @@ public class ProjectServiceImplTest {
 		Mockito.when(this.secretariatClient.retrieve(
 				Mockito.any(Long.class))).thenReturn(secretariatResponseDTO);
 		Mockito.when(this.budgetClient.list(
-				Mockito.any(String.class))).thenReturn(listBudgetResponseDTO);
+				Mockito.any(String.class))).thenReturn(pageBudget);
 		Mockito.when(this.budgetClient.createBudgetAllocation(
 				Mockito.any(Long.class), Mockito.any(AllocationRequestDTO.class))).thenReturn(budgetResponseDTO);
 	}
@@ -108,6 +113,7 @@ public class ProjectServiceImplTest {
 	@Test
 	public void createTest() {
 		
+		Mockito.when(this.pageBudget.getContent()).thenReturn(this.listBudgetResponseDTO);
 		Project response = this.service.create(request);
 
 		assertNotNull(response);
@@ -126,6 +132,7 @@ public class ProjectServiceImplTest {
 		
 		Mockito.when(this.secretariatClient.retrieve(
 				Mockito.any(Long.class))).thenReturn(secretariatResponseDTO);
+		Mockito.when(this.pageBudget.getContent()).thenReturn(this.listBudgetResponseDTO);
 		
 		assertThrows(ApplicationException.class, () -> {
 			this.service.create(request);
@@ -136,9 +143,7 @@ public class ProjectServiceImplTest {
 	public void createBudgetNotFoundTest() {
 		
 		List<BudgetResponseDTO> listBudgetResponseDTO = new LinkedList<BudgetResponseDTO>();
-		
-		Mockito.when(this.budgetClient.list(
-				Mockito.any(String.class))).thenReturn(listBudgetResponseDTO);
+		Mockito.when(this.pageBudget.getContent()).thenReturn(listBudgetResponseDTO);
 
 		assertThrows(ApplicationException.class, () -> {
 			this.service.create(request);

@@ -1,8 +1,7 @@
 package br.com.mesttra.msc.projeto.client;
 
-import java.util.List;
-
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +22,7 @@ public interface BudgetClient {
 	@RequestMapping(method = RequestMethod.GET, 
 			value = "/microservices/api/v1/mesttra/budget/", 
 			consumes = "application/json")
-	public List<BudgetResponseDTO> list(
+	public Page<BudgetResponseDTO> list(
 			@RequestParam("destination") String destination);
 	
 	@RequestMapping(method = RequestMethod.POST, 

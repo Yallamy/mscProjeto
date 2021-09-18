@@ -12,7 +12,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"secretariatId\": 1,\r\n  \"cost\": 50,\r\n  \"title\": \"Teste 1\",\r\n  \"description\": \"teste 1\",\r\n  \"folder\": \"HEALTH\"\r\n}"
+					"raw": "{\r\n  \"secretariatId\": 1,\r\n  \"cost\": 50,\r\n  \"title\": \"Teste 1\",\r\n  \"description\": \"teste 1\",\r\n  \"folder\": \"HEALTH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://localhost:8080/microservices/api/v1/mesttra/project/",

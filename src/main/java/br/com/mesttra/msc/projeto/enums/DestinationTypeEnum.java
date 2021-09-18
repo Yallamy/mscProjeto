@@ -3,6 +3,7 @@ package br.com.mesttra.msc.projeto.enums;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public enum DestinationTypeEnum {
 	INFRASTRUCTURE("INFRASTRUCTURE"),
 	OTHERS("OTHERS");
 	
+	@JsonProperty("destinationType")
 	private String destinationType;
 	
 	/**

@@ -2,7 +2,6 @@ package br.com.mesttra.msc.projeto.dto.response;
 
 import java.io.Serializable;
 
-import br.com.mesttra.msc.projeto.enums.DestinationTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,8 +21,6 @@ public class SecretariatResponseDTO implements Serializable {
 	private static final long serialVersionUID = 8692009026050331917L;
 	
 	private Long id;
-	
-	private DestinationTypeEnum folder;
 	
 	private String secretary;
 	

@@ -3,9 +3,7 @@ package br.com.mesttra.msc.projeto.dto.response;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
-import br.com.mesttra.msc.projeto.enums.SourceEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,11 +29,5 @@ public class BudgetResponseDTO implements Serializable {
 	private BigDecimal totalSpentAmount;
 	
 	private LocalDateTime dtBudget;
-
-	private SourceEnum source;
-
-	private List<DestinationResponseDTO> destinations;
-	
-	private List<AllocationResponseDTO> allocations;
 
 }

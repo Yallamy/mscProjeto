@@ -1,6 +1,6 @@
 package br.com.mesttra.msc.projeto.client.fallback;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import br.com.mesttra.msc.projeto.client.BudgetClient;
 import br.com.mesttra.msc.projeto.dto.request.AllocationRequestDTO;
@@ -19,7 +19,7 @@ public class BudgetFallback implements BudgetClient {
 	 * @see br.com.mesttra.msc.projeto.client.BudgetClient#list(java.lang.String)
 	 */
 	@Override
-	public List<BudgetResponseDTO> list(String destination) {
+	public Page<BudgetResponseDTO> list(String destination) {
 		return null;
 	}
 

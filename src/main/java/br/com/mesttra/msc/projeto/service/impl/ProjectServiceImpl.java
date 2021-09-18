@@ -63,13 +63,19 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		
 		//Um projeto só pode ser aprovado caso haja orçamento disponível para executá-lo
-		List<BudgetResponseDTO> budgetResponseDTO = budgetClient.list(project.getFolder().getDestinationType());
+		Page<BudgetResponseDTO> budgetResponseDTO = budgetClient.list(project.getFolder().getDestinationType());
 		
-		if(budgetResponseDTO.isEmpty()) {
+		ValidationCustom.validateNull(budgetResponseDTO, ServiceEnumValidation.BUDGET_NOT_FOUND);
+		
+		List<BudgetResponseDTO> listBudget = budgetResponseDTO.getContent();
+		
+		if(listBudget.isEmpty()) {
 			throw new ApplicationException(ServiceEnumValidation.BUDGET_NOT_FOUND);
 		}
 		
-		budgetClient.createBudgetAllocation(budgetResponseDTO.get(0).getId(), 
+		BudgetResponseDTO budget = listBudget.get(0);
+		
+		budgetClient.createBudgetAllocation(budget.getId(), 
 				AllocationRequestDTO.builder().spentAmount(project.getCost()).build());
 		
 		return repository.save(project);

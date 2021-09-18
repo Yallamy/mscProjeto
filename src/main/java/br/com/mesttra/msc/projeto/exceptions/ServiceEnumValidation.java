@@ -11,9 +11,12 @@ public enum ServiceEnumValidation implements GenericValidation{
 
 	CONSISTENCY_ERROR("Objeto requerido null ou vazio", HttpStatus.BAD_REQUEST),
 	DATA_VALIDATION("Objeto com violação de regras de dados do banco", HttpStatus.BAD_REQUEST),
+	ARGUMENTS_VALIDATION("Validação dos argumentos", HttpStatus.BAD_REQUEST),
+	EXTERNAL_COMMUNICATION_FAILURE("Ocorreu um problema na comunicação com o serviço externo", HttpStatus.BAD_REQUEST),
 	SECRETARIAT_NOT_FOUND("O secretariado não foi encontrado", HttpStatus.NOT_FOUND),
 	SECRETARIAT_UNDER_INVESTIGATION("O secretariado está sob investigação", HttpStatus.BAD_REQUEST),
 	BUDGET_NOT_FOUND("O orçamento não foi encontrado", HttpStatus.NOT_FOUND);
+	
 	
 	private String errorCode;
 	
